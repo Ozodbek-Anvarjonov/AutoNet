@@ -47,14 +47,20 @@ public class Repository<TEntity, TContext>(DbContext context) : IRepository<TEnt
 
         context.Remove(exist);
 
+        if (saveChanges)
+            await context.SaveChangesAsync(cancellationToken);
+
         return exist;
     }
 
-    public Task<TEntity> DeleteAsync(TEntity entity, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task<TEntity> DeleteAsync(TEntity entity, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
         context.Remove(entity);
 
-        return Task.FromResult(entity);
+        if (saveChanges)
+            await context.SaveChangesAsync(cancellationToken);
+
+        return entity;
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>

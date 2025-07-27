@@ -89,12 +89,12 @@ public class CarService(IRepository<Car, ApplicationDbContext> repository) : ICa
         return exist;
     }
 
-    public async Task<Car> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
         var exist = await GetByIdAsync(id, cancellationToken: cancellationToken);
 
         await repository.DeleteAsync(exist);
 
-        return exist;
+        return exist is not null ? true : false;
     }
 }

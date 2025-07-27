@@ -14,5 +14,5 @@ public interface ICityService
 
     Task<City> UpdateAsync(int id, City city, bool saveChanges = true, CancellationToken cancellationToken = default);
 
-    Task<City> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
+    Task<bool> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
 }

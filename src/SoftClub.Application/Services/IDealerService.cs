@@ -14,5 +14,5 @@ public interface IDealerService
 
     Task<Dealer> UpdateAsync(int id, Dealer dealer, bool saveChanges = true, CancellationToken cancellationToken = default);
 
-    Task<Dealer> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
+    Task<bool> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
 }

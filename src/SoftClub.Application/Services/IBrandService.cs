@@ -14,5 +14,5 @@ public interface IBrandService
 
     Task<Brand> UpdateAsync(int id, Brand brand, bool saveChanges = true, CancellationToken cancellationToken = default);
 
-    Task<Brand> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
+    Task<bool> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
 }

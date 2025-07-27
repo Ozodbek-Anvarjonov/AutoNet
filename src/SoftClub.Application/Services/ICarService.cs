@@ -13,5 +13,5 @@ public interface ICarService
 
     Task<Car> UpdateAsync(int id, Car car, bool saveChanges = true, CancellationToken cancellationToken = default);
 
-    Task<Car> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
+    Task<bool> DeleteByIdAsync(int id, bool saveChanges = true, CancellationToken cancellationToken = default);
 }

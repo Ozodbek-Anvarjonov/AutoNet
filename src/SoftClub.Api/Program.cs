@@ -24,6 +24,7 @@ builder.Services.AddScoped<IRepository<Car, ApplicationDbContext>, Repository<Ca
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<InvalidOperationExceptionHandler>();
 builder.Services.AddExceptionHandler<InternalServerExceptionHandler>();
 
 var app = builder.Build();

@@ -22,7 +22,7 @@ public class CitiesController(
         return Ok(data);
     }
 
-    [HttpGet("{id:int}/dealer")]
+    [HttpGet("{id:int}/dealers")]
     public async ValueTask<IActionResult> GetDealerById([FromRoute] int id, [FromQuery] Pagination filter, CancellationToken cancellationToken)
     {
         var dealerFilter = new DealerFilter { CityId = id, PageNumber = filter.PageNumber, PageSize = filter.PageSize };

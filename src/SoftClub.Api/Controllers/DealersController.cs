@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SoftClub.Application.Dtos;
 using SoftClub.Application.Filters;
 using SoftClub.Application.Services;
-using SoftClub.Domain.Common.Pagination;
 using SoftClub.Domain.Entities;
 
 namespace SoftClub.Api.Controllers;

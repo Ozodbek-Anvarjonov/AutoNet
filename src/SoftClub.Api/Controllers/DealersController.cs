@@ -11,7 +11,7 @@ namespace SoftClub.Api.Controllers;
 public class DealersController(IDealerService service, IMapper mapper) : BaseController
 {
     [HttpGet]
-    public async ValueTask<IActionResult> GetAll([FromQuery] Pagination filter, CancellationToken cancellationToken)
+    public async ValueTask<IActionResult> GetAll([FromQuery] DealerFilter filter, CancellationToken cancellationToken)
     {
         var data = await service.GetAsync(filter, true, cancellationToken);
 

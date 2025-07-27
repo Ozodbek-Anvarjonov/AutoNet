@@ -8,12 +8,25 @@ using SoftClub.Domain.Entities;
 
 namespace SoftClub.Api.Controllers;
 
-public class CitiesController(ICityService service, IMapper mapper) : BaseController
+public class CitiesController(
+    ICityService service,
+    IMapper mapper,
+    IDealerService dealerService
+    ) : BaseController
 {
     [HttpGet]
     public async ValueTask<IActionResult> GetAll([FromQuery] Pagination filter, CancellationToken cancellationToken)
     {
         var data = await service.GetAsync(filter, true, cancellationToken);
+
+        return Ok(data);
+    }
+
+    [HttpGet("{id:int}/dealer")]
+    public async ValueTask<IActionResult> GetDealerById([FromRoute] int id, [FromQuery] Pagination filter, CancellationToken cancellationToken)
+    {
+        var dealerFilter = new DealerFilter { CityId = id, PageNumber = filter.PageNumber, PageSize = filter.PageSize };
+        var data = await dealerService.GetAsync(dealerFilter, cancellationToken: cancellationToken);
 
         return Ok(data);
     }

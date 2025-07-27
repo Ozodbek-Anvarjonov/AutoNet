@@ -6,7 +6,7 @@ namespace SoftClub.Application.Services;
 
 public interface IDealerService
 {
-    Task<List<Dealer>> GetAsync(Pagination filter, bool asNoTracking = false, CancellationToken cancellationToken = default);
+    Task<List<Dealer>> GetAsync(DealerFilter filter, bool asNoTracking = false, CancellationToken cancellationToken = default);
 
     Task<Dealer> GetByIdAsync(int id, bool asNoTracking = false, CancellationToken cancellationToken = default);
 

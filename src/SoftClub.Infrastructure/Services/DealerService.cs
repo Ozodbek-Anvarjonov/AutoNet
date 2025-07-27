@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SoftClub.Application.Filters;
 using SoftClub.Application.Services;
-using SoftClub.Domain.Common.Pagination;
 using SoftClub.Domain.Entities;
 using SoftClub.Infrastructure.Extensions;
 using SoftClub.Persistence.DataContexts;
@@ -10,13 +10,15 @@ namespace SoftClub.Infrastructure.Services;
 
 public class DealerService(IRepository<Dealer, ApplicationDbContext> repository) : IDealerService
 {
-    public async Task<List<Dealer>> GetAsync(Pagination filter, bool asNoTracking = false, CancellationToken cancellationToken = default)
+    public async Task<List<Dealer>> GetAsync(DealerFilter filter, bool asNoTracking = false, CancellationToken cancellationToken = default)
     {
         var query = repository.Get();
 
         if (asNoTracking)
             query = query.AsNoTracking();
 
+        if (filter.CityId is not null)
+            query = query.Where(entity => entity.CityId == filter.CityId);
 
         return await query.ToPaginateAsync(filter, cancellationToken);
     }

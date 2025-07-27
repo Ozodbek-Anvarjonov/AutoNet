@@ -12,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<IDealerService, DealerService>();
+builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddDbContext<DbContext, ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDbConnection"));

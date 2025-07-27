@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SoftClub.Api.ExceptionHandlers;
 using SoftClub.Application.Services;
 using SoftClub.Domain.Entities;
 using SoftClub.Infrastructure.Services;
@@ -22,11 +23,14 @@ builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<IRepository<Car, ApplicationDbContext>, Repository<Car, ApplicationDbContext>>();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<InternalServerExceptionHandler>();
 
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseExceptionHandler();
 
 app.MapControllers();
 

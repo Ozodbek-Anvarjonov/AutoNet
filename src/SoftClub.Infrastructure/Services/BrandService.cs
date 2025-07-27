@@ -40,6 +40,9 @@ public class BrandService(IRepository<Brand, ApplicationDbContext> repository) :
     {
         var exist = await GetByIdAsync(id, cancellationToken: cancellationToken);
 
+        exist.Country = brand.Country;
+        exist.Name = brand.Name;
+        exist.Description = brand.Description;
         exist.LogoUrl = brand.LogoUrl;
 
         if (saveChanges)

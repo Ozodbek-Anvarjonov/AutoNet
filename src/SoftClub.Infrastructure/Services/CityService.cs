@@ -40,7 +40,9 @@ public class CityService(IRepository<City, ApplicationDbContext> repository) : I
     {
         var exist = await GetByIdAsync(id, cancellationToken: cancellationToken);
 
-        exist.Name = exist.Name;
+        exist.Name = city.Name;
+        exist.Region = city.Region;
+        exist.Country = city.Country;
 
         if (saveChanges)
             await repository.SaveChangesAsync(cancellationToken);

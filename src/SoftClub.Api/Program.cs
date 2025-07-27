@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SoftClub.Application.Services;
-using SoftClub.Domain.Common.Entities;
 using SoftClub.Domain.Entities;
 using SoftClub.Infrastructure.Services;
 using SoftClub.Persistence.DataContexts;

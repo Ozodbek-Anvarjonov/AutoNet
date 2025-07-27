@@ -41,6 +41,11 @@ public class DealerService(IRepository<Dealer, ApplicationDbContext> repository)
         var exist = await GetByIdAsync(id, cancellationToken: cancellationToken);
 
         exist.Name = dealer.Name;
+        exist.Address = dealer.Address;
+        exist.Phone = dealer.Phone;
+        exist.Email = dealer.Email;
+        exist.Rating = dealer.Rating;
+        exist.CityId = dealer.CityId;
 
         if (saveChanges)
             await repository.SaveChangesAsync(cancellationToken);

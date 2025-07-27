@@ -2,6 +2,7 @@
 using SoftClub.Application.Filters;
 using SoftClub.Application.Services;
 using SoftClub.Domain.Entities;
+using SoftClub.Infrastructure.Extensions;
 using SoftClub.Persistence.DataContexts;
 using SoftClub.Persistence.Repository;
 
@@ -47,9 +48,7 @@ public class CarService(IRepository<Car, ApplicationDbContext> repository) : ICa
             //.Include(entity => entity.Brand)
             //.Include(entity => entity.Dealer);
 
-        query = query.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize);
-
-        return query.ToListAsync(cancellationToken);
+        return query.ToPaginateAsync(filter, cancellationToken);
     }
 
     public async Task<Car> GetByIdAsync(int id, bool asNoTracking = false, CancellationToken cancellationToken = default)

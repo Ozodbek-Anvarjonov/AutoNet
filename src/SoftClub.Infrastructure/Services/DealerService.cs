@@ -18,7 +18,7 @@ public class DealerService(IRepository<Dealer, ApplicationDbContext> repository)
             query = query.AsNoTracking();
 
 
-        return await query.ToPaginateAsync(filter);
+        return await query.ToPaginateAsync(filter, cancellationToken);
     }
 
     public async Task<Dealer> GetByIdAsync(int id, bool asNoTracking = false, CancellationToken cancellationToken = default)

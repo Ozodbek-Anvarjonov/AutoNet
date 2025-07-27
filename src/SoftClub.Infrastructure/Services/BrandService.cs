@@ -18,7 +18,7 @@ public class BrandService(IRepository<Brand, ApplicationDbContext> repository) :
             query = query.AsNoTracking();
 
 
-        return await query.ToPaginateAsync(filter);
+        return await query.ToPaginateAsync(filter, cancellationToken);
     }
 
     public async Task<Brand> GetByIdAsync(int id, bool asNoTracking = false, CancellationToken cancellationToken = default)
@@ -29,7 +29,7 @@ public class BrandService(IRepository<Brand, ApplicationDbContext> repository) :
         return exist;
     }
 
-    public async Task<Brand> CreateAsync(Brand  brand, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task<Brand> CreateAsync(Brand brand, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
         var entity = await repository.CreateAsync(brand, saveChanges, cancellationToken);
 

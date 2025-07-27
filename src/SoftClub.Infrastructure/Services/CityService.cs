@@ -18,7 +18,7 @@ public class CityService(IRepository<City, ApplicationDbContext> repository) : I
             query = query.AsNoTracking();
 
 
-        return await query.ToPaginateAsync(filter);
+        return await query.ToPaginateAsync(filter, cancellationToken);
     }
 
     public async Task<City> GetByIdAsync(int id, bool asNoTracking = false, CancellationToken cancellationToken = default)
